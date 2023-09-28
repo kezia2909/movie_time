@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_time/src/ui/movie_list.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
       ),
       home: Scaffold(
           body: SafeArea(
-        child: Text("movie time"),
+        child: MovieList(),
       )),
     );
   }

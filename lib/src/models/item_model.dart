@@ -15,6 +15,10 @@ class ItemModel {
     }
     _results = temp;
   }
+
+  List<_ResultModel>? get results => _results;
+
+  get length => null;
 }
 
 class _ResultModel {
@@ -51,4 +55,6 @@ class _ResultModel {
     _voteAverage = result['_vote_average'];
     _voteCount = result['_vote_count'];
   }
+
+  String? get posterPath => _posterPath;
 }

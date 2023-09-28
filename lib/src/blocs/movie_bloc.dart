@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:movie_time/src/models/item_model.dart';
 import 'package:movie_time/src/resources/repository.dart';
 import 'package:rxdart/rxdart.dart';
