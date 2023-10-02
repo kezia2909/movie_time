@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_time/pages/home_page.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:movie_time/pages/persistent_bottom_nav_bar.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           body: SafeArea(
-        child: HomePage(),
+        child: PersistentBottomNavigationBar(),
       )),
     );
   }
