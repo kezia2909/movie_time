@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_time/src/blocs/top_rated_bloc.dart';
 import 'package:movie_time/src/models/movie_model.dart';
+import 'package:movie_time/utils/app_constants.dart';
+import 'package:movie_time/widgets/movie_with_rate_widget.dart';
 
 class TopRatedMoviesWidget extends StatefulWidget {
   const TopRatedMoviesWidget({super.key});
@@ -33,9 +35,15 @@ class _TopRatedMoviesWidgetState extends State<TopRatedMoviesWidget> {
                 scrollDirection: Axis.horizontal,
                 itemCount: movies.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    child: Text(movies[index].originalTitle),
-                  );
+                  String imageUrl =
+                      AppConstants.imageBaseUrlOri + movies[index].posterPath!;
+                  String title = movies[index].title;
+                  double voteAverage = movies[index].voteAverage;
+                  return MovieWithRate(
+                      index: index,
+                      imageUrl: imageUrl,
+                      title: title,
+                      voteAverage: voteAverage);
                 },
               ),
             );

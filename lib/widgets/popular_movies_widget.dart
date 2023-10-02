@@ -62,8 +62,8 @@ class _PopularMoviesWidgetState extends State<PopularMoviesWidget> {
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                               colors: [
-                                Colors.black.withOpacity(0.8),
-                                Colors.black.withOpacity(0.0),
+                                appColor(colorBlack, opacity: 0.8),
+                                appColor(colorBlack, opacity: 0.0),
                               ],
                               begin: Alignment.bottomCenter,
                               end: Alignment.topCenter),

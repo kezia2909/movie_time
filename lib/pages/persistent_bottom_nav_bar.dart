@@ -44,6 +44,7 @@ class _PersistentBottomNavigationBarState
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
+      // navBarHeight: 70,
       backgroundColor: Colors.white, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset:
@@ -71,6 +72,5 @@ class _PersistentBottomNavigationBarState
       navBarStyle:
           NavBarStyle.style1, // Choose the nav bar style with this property.
     );
-    ;
   }
 }

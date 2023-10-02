@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-hexStringToColor(String hexColor) {
+hexStringToColor(String hexColor, double opacity) {
   hexColor = hexColor.toUpperCase().replaceAll("#", "");
   if (hexColor.length == 6) {
     hexColor = "FF" + hexColor;
   }
-  return Color(int.parse(hexColor, radix: 16));
+
+  return Color(int.parse(hexColor, radix: 16)).withOpacity(opacity);
 }
 
 String colorShadow = "shadow";
@@ -21,19 +22,19 @@ String hexShadow = "0d253f";
 String hexHighlight = "01b4e4";
 String hexAccent = "90cea1";
 
-String hexBlack = "1f1f1f";
+String hexBlack = "000b17";
 String hexWhite = "ffffff";
 
-appColor(String type) {
+appColor(String type, {double opacity = 1.0}) {
   if (type == colorShadow) {
-    return hexStringToColor(hexShadow);
+    return hexStringToColor(hexShadow, opacity);
   } else if (type == colorHighlight) {
-    return hexStringToColor(hexHighlight);
+    return hexStringToColor(hexHighlight, opacity);
   } else if (type == colorAccent) {
-    return hexStringToColor(hexAccent);
+    return hexStringToColor(hexAccent, opacity);
   } else if (type == colorBlack) {
-    return hexStringToColor(hexBlack);
+    return hexStringToColor(hexBlack, opacity);
   } else if (type == colorWhite) {
-    return hexStringToColor(hexWhite);
+    return hexStringToColor(hexWhite, opacity);
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_time/pages/home_page.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:movie_time/pages/persistent_bottom_nav_bar.dart';
+import 'package:movie_time/utils/app_colors.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -22,9 +23,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Scaffold(
+          backgroundColor: appColor(colorShadow),
           body: SafeArea(
-        child: PersistentBottomNavigationBar(),
-      )),
+            child: PersistentBottomNavigationBar(),
+          )),
     );
   }
 }
