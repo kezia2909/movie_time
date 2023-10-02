@@ -27,7 +27,8 @@ class _NowPlayingMoviesWidgetState extends State<NowPlayingMoviesWidget> {
           if (movies.length == 0) {
             return Text("No Movies");
           } else {
-            return Expanded(
+            return Container(
+              height: 200,
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: movies.length,
