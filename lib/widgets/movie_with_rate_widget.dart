@@ -42,7 +42,7 @@ class _MovieWithRateState extends State<MovieWithRate> {
             widget.title,
             style: TextStyle(color: appColor(colorWhite), fontSize: 12),
             overflow: TextOverflow.ellipsis,
-            maxLines: 2,
+            maxLines: 1,
           ),
           Row(
             children: [
@@ -52,32 +52,52 @@ class _MovieWithRateState extends State<MovieWithRate> {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
-              RatingBar(
+              // RatingBar(
+              //   ignoreGestures: true,
+              //   ratingWidget: RatingWidget(
+              //     empty: Icon(
+              //       Icons.star,
+              //       color: appColor(colorWhite),
+              //     ),
+              //     full: Icon(
+              //       Icons.star,
+              //       color: appColor(colorAccent),
+              //     ),
+              //     half: Icon(
+              //       Icons.star,
+              //       color: appColor(colorHighlight),
+              //     ),
+              //   ),
+              //   itemSize: 10.0,
+              //   initialRating: 3.5,
+              //   minRating: 0.0,
+              //   maxRating: 5.0,
+              //   direction: Axis.horizontal,
+              //   allowHalfRating: true,
+              //   itemCount: 5,
+              //   itemPadding: EdgeInsets.symmetric(horizontal: 0.5),
+              //   onRatingUpdate: (rating) {
+              //     print("rate : $rating");
+              //   },
+              // ),
+              RatingBar.builder(
                 ignoreGestures: true,
-                ratingWidget: RatingWidget(
-                  empty: Icon(
-                    Icons.star,
-                    color: appColor(colorWhite),
-                  ),
-                  full: Icon(
-                    Icons.star,
-                    color: appColor(colorAccent),
-                  ),
-                  half: Icon(
-                    Icons.star,
-                    color: appColor(colorAccent),
-                  ),
-                ),
                 itemSize: 10.0,
-                initialRating: widget.voteAverage / 2,
-                minRating: 0,
+                initialRating: widget.voteAverage / 2.0,
+                minRating: 0.0,
+                maxRating: 5.0,
                 direction: Axis.horizontal,
                 allowHalfRating: true,
                 itemCount: 5,
                 itemPadding: EdgeInsets.symmetric(horizontal: 0.5),
-                onRatingUpdate: (rating) {
-                  print("rate : $rating");
+                itemBuilder: (BuildContext context, int index) {
+                  return Icon(
+                    Icons.star,
+                    color: appColor(colorAccent),
+                  );
                 },
+                unratedColor: appColor(colorWhite, opacity: 0.55),
+                onRatingUpdate: (double value) {},
               )
             ],
           ),
