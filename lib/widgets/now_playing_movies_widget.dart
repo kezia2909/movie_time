@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_time/src/blocs/now_playing_bloc.dart';
 import 'package:movie_time/src/models/movie_model.dart';
+import 'package:movie_time/utils/app_colors.dart';
+import 'package:movie_time/utils/app_constants.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:movie_time/widgets/movie_with_rate_widget.dart';
 
 class NowPlayingMoviesWidget extends StatefulWidget {
   const NowPlayingMoviesWidget({super.key});
@@ -27,14 +31,21 @@ class _NowPlayingMoviesWidgetState extends State<NowPlayingMoviesWidget> {
           if (movies.length == 0) {
             return Text("No Movies");
           } else {
-            return Expanded(
+            return Container(
+              height: 200,
               child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: movies.length,
+                scrollDirection: Axis.horizontal,
+                itemCount: movies.take(10).length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    child: Text(movies[index].originalTitle),
-                  );
+                  String imageUrl =
+                      AppConstants.imageBaseUrlOri + movies[index].posterPath!;
+                  String title = movies[index].title;
+                  double voteAverage = movies[index].voteAverage;
+                  return MovieWithRate(
+                      index: index,
+                      imageUrl: imageUrl,
+                      title: title,
+                      voteAverage: voteAverage);
                 },
               ),
             );
