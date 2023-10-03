@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_time/pages/collection_page.dart';
 import 'package:movie_time/pages/home_page.dart';
+import 'package:movie_time/pages/trending_page.dart';
 import 'package:movie_time/utils/app_colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -17,7 +18,11 @@ class _PersistentBottomNavigationBarState
     extends State<PersistentBottomNavigationBar> {
   PersistentTabController controller = PersistentTabController(initialIndex: 0);
   List<Widget> _buildScreens() {
-    return [HomePage(), CollectionPage()];
+    return [
+      HomePage(),
+      TrendingPage(),
+      CollectionPage(),
+    ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -26,6 +31,12 @@ class _PersistentBottomNavigationBarState
         icon: Icon(Icons.home),
         title: ("Home"),
         activeColorPrimary: appColor(colorAccent),
+        inactiveColorPrimary: appColor(colorWhite, opacity: 0.6),
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(Icons.local_fire_department),
+        title: ("Trending"),
+        activeColorPrimary: appColor(colorRed),
         inactiveColorPrimary: appColor(colorWhite, opacity: 0.6),
       ),
       PersistentBottomNavBarItem(

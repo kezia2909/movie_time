@@ -10,20 +10,20 @@ hexStringToColor(String hexColor, double opacity) {
 }
 
 String colorShadow = "shadow";
-String colorMidtone = "midtone";
 String colorHighlight = "highlight";
 String colorAccent = "accent";
 String colorBlack = "black";
 String colorWhite = "white";
+String colorRed = "red";
 
 // BROWN VERSION
 String hexShadow = "0d253f";
-// String hexMidtone = "01b4e4";
 String hexHighlight = "01b4e4";
 String hexAccent = "90cea1";
 
 String hexBlack = "000b17";
 String hexWhite = "ffffff";
+String hexRed = "ce9090";
 
 appColor(String type, {double opacity = 1.0}) {
   if (type == colorShadow) {
@@ -36,5 +36,7 @@ appColor(String type, {double opacity = 1.0}) {
     return hexStringToColor(hexBlack, opacity);
   } else if (type == colorWhite) {
     return hexStringToColor(hexWhite, opacity);
+  } else if (type == colorRed) {
+    return hexStringToColor(hexRed, opacity);
   }
 }
