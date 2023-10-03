@@ -39,7 +39,6 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Container(
-        padding: EdgeInsets.only(bottom: 20),
         color: appColor(colorBlack),
         child: SingleChildScrollView(
           child: Column(
@@ -102,6 +101,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(height: 8),
                     UpcomingMoviesWidget(),
+                    SizedBox(height: 8),
                   ],
                 ),
               ),

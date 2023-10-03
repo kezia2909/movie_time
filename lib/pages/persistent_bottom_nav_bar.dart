@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_time/pages/collection_page.dart';
 import 'package:movie_time/pages/home_page.dart';
+import 'package:movie_time/utils/app_colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class PersistentBottomNavigationBar extends StatefulWidget {
@@ -24,14 +25,14 @@ class _PersistentBottomNavigationBarState
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
         title: ("Home"),
-        activeColorPrimary: Colors.blue,
-        inactiveColorPrimary: Colors.grey,
+        activeColorPrimary: appColor(colorAccent),
+        inactiveColorPrimary: appColor(colorWhite, opacity: 0.6),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.collections_bookmark),
         title: ("Collection"),
-        activeColorPrimary: Colors.blue,
-        inactiveColorPrimary: Colors.grey,
+        activeColorPrimary: appColor(colorHighlight),
+        inactiveColorPrimary: appColor(colorWhite, opacity: 0.6),
       ),
     ];
   }
@@ -45,17 +46,17 @@ class _PersistentBottomNavigationBarState
       items: _navBarsItems(),
       confineInSafeArea: true,
       // navBarHeight: 70,
-      backgroundColor: Colors.white, // Default is Colors.white.
+      backgroundColor: appColor(colorShadow), // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset:
           true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
       stateManagement: true, // Default is true.
       hideNavigationBarWhenKeyboardShows:
           true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-      decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        colorBehindNavBar: Colors.white,
-      ),
+      // decoration: NavBarDecoration(
+      //   borderRadius: BorderRadius.circular(10.0),
+      //   colorBehindNavBar: Colors.white,
+      // ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: ItemAnimationProperties(
