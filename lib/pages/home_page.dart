@@ -3,6 +3,7 @@ import 'package:movie_time/utils/app_colors.dart';
 import 'package:movie_time/widgets/now_playing_movies_widget.dart';
 import 'package:movie_time/widgets/popular_movies_widget.dart';
 import 'package:movie_time/widgets/top_rated_movies_widget.dart';
+import 'package:movie_time/widgets/upcoming_movies_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -84,6 +85,23 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(height: 8),
                     TopRatedMoviesWidget(),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "UPCOMING",
+                          style: TextStyle(color: appColor(colorWhite)),
+                        ),
+                        Text(
+                          "see all",
+                          style: TextStyle(
+                              color: appColor(colorWhite, opacity: 0.5)),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8),
+                    UpcomingMoviesWidget(),
                   ],
                 ),
               ),
