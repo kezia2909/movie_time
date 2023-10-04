@@ -1,5 +1,6 @@
 import 'package:movie_time/src/models/item_model.dart';
 import 'package:movie_time/src/models/movie_model.dart';
+import 'package:movie_time/src/models/trending_model.dart';
 import 'package:movie_time/src/resources/movie_api_provider.dart';
 
 class Repository {
@@ -16,4 +17,13 @@ class Repository {
 
   Future<MovieResponseModel> getUpcomingMovieList({int page = 1}) =>
       movieApiProvider.getUpcomingMovieList(page: page);
+
+  Future<TrendingResponseModel> getTrendingMovieDayList({int page = 1}) =>
+      movieApiProvider.getTrendingMovieDayList(page: page);
+
+  Future<TrendingResponseModel> getTrendingTvShowDayList({int page = 1}) =>
+      movieApiProvider.getTrendingTvShowDayList(page: page);
+
+  Future<TrendingResponseModel> getTrendingPeopleDayList({int page = 1}) =>
+      movieApiProvider.getTrendingPeopleDayList(page: page);
 }

@@ -2,20 +2,34 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_time/src/blocs/popular_bloc.dart';
+import 'package:movie_time/src/blocs/trending_movie_day_bloc.dart';
+import 'package:movie_time/src/blocs/trending_tv_show_day_bloc.dart';
 import 'package:movie_time/src/models/movie_model.dart';
+import 'package:movie_time/src/models/trending_model.dart';
 import 'package:movie_time/utils/app_colors.dart';
 import 'package:movie_time/utils/app_constants.dart';
 
-class TrendingMovieWidget extends StatefulWidget {
-  const TrendingMovieWidget({super.key});
+class TrendingWidget extends StatefulWidget {
+  final bool isMovie;
+
+  const TrendingWidget({
+    super.key,
+    required this.isMovie,
+  });
 
   @override
-  State<TrendingMovieWidget> createState() => _TrendingMovieWidgetState();
+  State<TrendingWidget> createState() => _TrendingWidgetState();
 }
 
-class _TrendingMovieWidgetState extends State<TrendingMovieWidget> {
+class _TrendingWidgetState extends State<TrendingWidget> {
   int _currentIndex = 0;
   CarouselController _carouselController = CarouselController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +37,19 @@ class _TrendingMovieWidgetState extends State<TrendingMovieWidget> {
       color: appColor(colorBlack),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      child: StreamBuilder<MovieResponseModel>(
-        stream: popularMovieBloc.subject.stream,
-        builder: (context, AsyncSnapshot<MovieResponseModel> snapshot) {
+      child: StreamBuilder<TrendingResponseModel>(
+        stream: widget.isMovie
+            ? trendingMovieDayBloc.subject.stream
+            : trendingTvShowDayBloc.subject.stream,
+        builder: (context, AsyncSnapshot<TrendingResponseModel> snapshot) {
           if (snapshot.hasData) {
-            List<MovieModel> movies = snapshot.data!.results;
+            // List<TrendingMovieModel> movies = snapshot.data!.results;
+            // List<TrendingItemModel> movies = snapshot.data!.results
+            //     .where((item) => item is TrendingMovieModel)
+            //     .toList();
+            List<TrendingMovieModel> movies =
+                snapshot.data!.results.whereType<TrendingMovieModel>().toList();
+
             if (movies.length == 0) {
               return Text("No Movies");
             } else {
