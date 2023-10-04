@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movie_time/src/models/item_model.dart';
 import 'package:movie_time/src/models/movie_model.dart';
+import 'package:movie_time/src/models/trending_model.dart';
 import 'package:movie_time/utils/app_constants.dart';
 
 class MovieApiProvider {
@@ -12,6 +13,7 @@ class MovieApiProvider {
   String getNowPlayingMovieUrl = "$baseUrl/movie/now_playing";
   String getTopRatedMovieUrl = "$baseUrl/movie/top_rated";
   String getUpcomingMovieUrl = "$baseUrl/movie/upcoming";
+  String getTrendingMovieDayUrl = "$baseUrl/trending/movie/day";
 
   Future<MovieResponseModel> getPopularMovieList({int page = 1}) async {
     final queryParameters = {
@@ -83,6 +85,25 @@ class MovieApiProvider {
       return MovieResponseModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to get upcoming movie list : ${response.body}');
+    }
+  }
+
+  Future<TrendingResponseModel> getTrendingMovieDayList({int page = 1}) async {
+    final queryParameters = {
+      'api_key': _apiKey,
+      'page': '$page',
+    };
+
+    final url = Uri.parse(getTrendingMovieDayUrl)
+        .replace(queryParameters: queryParameters);
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      return TrendingResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception(
+          'Failed to get trending movie day list : ${response.body}');
     }
   }
 }

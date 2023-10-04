@@ -2,7 +2,9 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_time/src/blocs/popular_bloc.dart';
+import 'package:movie_time/src/blocs/trending_movie_day_bloc.dart';
 import 'package:movie_time/src/models/movie_model.dart';
+import 'package:movie_time/src/models/trending_model.dart';
 import 'package:movie_time/utils/app_colors.dart';
 import 'package:movie_time/utils/app_constants.dart';
 
@@ -18,16 +20,23 @@ class _TrendingMovieWidgetState extends State<TrendingMovieWidget> {
   CarouselController _carouselController = CarouselController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    trendingMovieDayBloc.getTrendingList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: appColor(colorBlack),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      child: StreamBuilder<MovieResponseModel>(
-        stream: popularMovieBloc.subject.stream,
-        builder: (context, AsyncSnapshot<MovieResponseModel> snapshot) {
+      child: StreamBuilder<TrendingResponseModel>(
+        stream: trendingMovieDayBloc.subject.stream,
+        builder: (context, AsyncSnapshot<TrendingResponseModel> snapshot) {
           if (snapshot.hasData) {
-            List<MovieModel> movies = snapshot.data!.results;
+            List<TrendingItemModel> movies = snapshot.data!.results;
             if (movies.length == 0) {
               return Text("No Movies");
             } else {
