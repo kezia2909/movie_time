@@ -4,7 +4,7 @@ import 'package:movie_time/src/blocs/popular_bloc.dart';
 import 'package:movie_time/src/models/movie_model.dart';
 import 'package:movie_time/utils/app_colors.dart';
 import 'package:movie_time/utils/app_constants.dart';
-import 'package:movie_time/widgets/trending_movie_widget.dart';
+import 'package:movie_time/widgets/trending_widget.dart';
 
 class TrendingPage extends StatefulWidget {
   const TrendingPage({super.key});
@@ -77,9 +77,15 @@ class _TrendingPageState extends State<TrendingPage> {
         ),
         body: TabBarView(
           children: [
-            TrendingMovieWidget(), // Replace with your MoviePage widget
-            TrendingMovieWidget(), // Replace with your TVPage widget
-            TrendingMovieWidget(), // Replace with your PeoplePage widget
+            TrendingWidget(
+              isMovie: true,
+            ), // Replace with your MoviePage widget
+            TrendingWidget(
+              isMovie: false,
+            ), // Replace with your TVPage widget
+            TrendingWidget(
+              isMovie: true,
+            ), // Replace with your PeoplePage widget
           ],
         ),
       ),

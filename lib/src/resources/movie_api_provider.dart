@@ -14,6 +14,7 @@ class MovieApiProvider {
   String getTopRatedMovieUrl = "$baseUrl/movie/top_rated";
   String getUpcomingMovieUrl = "$baseUrl/movie/upcoming";
   String getTrendingMovieDayUrl = "$baseUrl/trending/movie/day";
+  String getTrendingTvShowDayUrl = "$baseUrl/trending/tv/day";
 
   Future<MovieResponseModel> getPopularMovieList({int page = 1}) async {
     final queryParameters = {
@@ -104,6 +105,25 @@ class MovieApiProvider {
     } else {
       throw Exception(
           'Failed to get trending movie day list : ${response.body}');
+    }
+  }
+
+  Future<TrendingResponseModel> getTrendingTvShowDayList({int page = 1}) async {
+    final queryParameters = {
+      'api_key': _apiKey,
+      'page': '$page',
+    };
+
+    final url = Uri.parse(getTrendingTvShowDayUrl)
+        .replace(queryParameters: queryParameters);
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      return TrendingResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception(
+          'Failed to get trending tv show day list : ${response.body}');
     }
   }
 }

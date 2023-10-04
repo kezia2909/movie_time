@@ -74,7 +74,7 @@ class TrendingItemModel {
         releaseDate: json["media_type"] == "movie"
             ? DateTime.parse(json["release_date"])
             : DateTime.parse(json["first_air_date"]),
-        video: json["media_type"] == "movie" ? json["video"] : "",
+        video: json["media_type"] == "movie" ? json["video"] : null,
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
       );
