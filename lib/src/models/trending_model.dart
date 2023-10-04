@@ -125,7 +125,7 @@ class TrendingMovieModel extends TrendingItemModel {
 class TrendingPeopleModel extends TrendingItemModel {
   final int gender;
   final String knownForDepartment;
-  final String profilePath;
+  final String? profilePath;
   final List<TrendingMovieModel> knownFor;
 
   TrendingPeopleModel({
@@ -158,7 +158,7 @@ class TrendingPeopleModel extends TrendingItemModel {
         popularity: json["popularity"]?.toDouble(),
         gender: json["gender"],
         knownForDepartment: json["known_for_department"],
-        profilePath: json["profile_path"],
+        profilePath: json["profile_path"] ?? "",
         knownFor: List<TrendingMovieModel>.from(
           json["known_for"].map((x) => TrendingMovieModel.fromJson(x)),
         ),

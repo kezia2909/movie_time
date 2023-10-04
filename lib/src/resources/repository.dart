@@ -23,4 +23,7 @@ class Repository {
 
   Future<TrendingResponseModel> getTrendingTvShowDayList({int page = 1}) =>
       movieApiProvider.getTrendingTvShowDayList(page: page);
+
+  Future<TrendingResponseModel> getTrendingPeopleDayList({int page = 1}) =>
+      movieApiProvider.getTrendingPeopleDayList(page: page);
 }

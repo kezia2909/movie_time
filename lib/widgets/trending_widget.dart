@@ -29,8 +29,6 @@ class _TrendingWidgetState extends State<TrendingWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    trendingMovieDayBloc.getTrendingList();
-    trendingTvShowDayBloc.getTrendingList();
   }
 
   @override

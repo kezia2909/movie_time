@@ -1,9 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_time/src/blocs/popular_bloc.dart';
+import 'package:movie_time/src/blocs/trending_movie_day_bloc.dart';
+import 'package:movie_time/src/blocs/trending_people_day_bloc.dart';
+import 'package:movie_time/src/blocs/trending_tv_show_day_bloc.dart';
 import 'package:movie_time/src/models/movie_model.dart';
 import 'package:movie_time/utils/app_colors.dart';
 import 'package:movie_time/utils/app_constants.dart';
+import 'package:movie_time/widgets/trending_people_widget.dart';
 import 'package:movie_time/widgets/trending_widget.dart';
 
 class TrendingPage extends StatefulWidget {
@@ -17,7 +21,9 @@ class _TrendingPageState extends State<TrendingPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    popularMovieBloc.getMovieList();
+    trendingMovieDayBloc.getTrendingList();
+    trendingTvShowDayBloc.getTrendingList();
+    trendingPeopleDayBloc.getTrendingList();
   }
 
   @override
@@ -83,9 +89,7 @@ class _TrendingPageState extends State<TrendingPage> {
             TrendingWidget(
               isMovie: false,
             ), // Replace with your TVPage widget
-            TrendingWidget(
-              isMovie: true,
-            ), // Replace with your PeoplePage widget
+            TrendingPeopleWidget(), // Replace with your PeoplePage widget
           ],
         ),
       ),
