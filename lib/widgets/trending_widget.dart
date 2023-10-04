@@ -45,7 +45,13 @@ class _TrendingWidgetState extends State<TrendingWidget> {
             : trendingTvShowDayBloc.subject.stream,
         builder: (context, AsyncSnapshot<TrendingResponseModel> snapshot) {
           if (snapshot.hasData) {
-            List<TrendingItemModel> movies = snapshot.data!.results;
+            // List<TrendingMovieModel> movies = snapshot.data!.results;
+            // List<TrendingItemModel> movies = snapshot.data!.results
+            //     .where((item) => item is TrendingMovieModel)
+            //     .toList();
+            List<TrendingMovieModel> movies =
+                snapshot.data!.results.whereType<TrendingMovieModel>().toList();
+
             if (movies.length == 0) {
               return Text("No Movies");
             } else {
