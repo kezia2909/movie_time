@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_time/pages/now_playing_movie_page.dart';
 import 'package:movie_time/utils/app_colors.dart';
 import 'package:movie_time/widgets/now_playing_movies_widget.dart';
 import 'package:movie_time/widgets/popular_movies_widget.dart';
@@ -58,10 +59,20 @@ class _HomePageState extends State<HomePage> {
                           "NOW PLAYING",
                           style: TextStyle(color: appColor(colorWhite)),
                         ),
-                        Text(
-                          "see all",
-                          style: TextStyle(
-                              color: appColor(colorWhite, opacity: 0.5)),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    NowPlayingMoviePage(), // Pass data if needed.
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "see all",
+                            style: TextStyle(
+                                color: appColor(colorWhite, opacity: 0.5)),
+                          ),
                         ),
                       ],
                     ),
