@@ -19,7 +19,18 @@ class _NowPlayingMoviePageState extends State<NowPlayingMoviePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    nowPlayingMovieBloc.getMovieList();
+    nowPlayingMovieBloc.getMovies();
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      print("MAX PAGE");
+      nowPlayingMovieBloc.getMovies();
+    } else {
+      print("NOT MAX PAGE");
+    }
   }
 
   @override
@@ -44,17 +55,18 @@ class _NowPlayingMoviePageState extends State<NowPlayingMoviePage> {
           )
         ],
       ),
-      body: StreamBuilder<MovieResponseModel>(
+      body: StreamBuilder<List<MovieModel>>(
         stream: nowPlayingMovieBloc.subject.stream,
-        builder: (context, AsyncSnapshot<MovieResponseModel> snapshot) {
+        builder: (context, AsyncSnapshot<List<MovieModel>> snapshot) {
           if (snapshot.hasData) {
-            List<MovieModel> movies = snapshot.data!.results;
+            List<MovieModel> movies = snapshot.data!;
             if (movies.length == 0) {
               return Text("No Movies");
             } else {
               return Container(
                 color: appColor(colorBlack),
                 child: GridView.builder(
+                  controller: _scrollController,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, // Number of columns
                       mainAxisSpacing: 10.0, // Vertical spacing
